@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PURSE Schedule Dashboard</title>
+
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <main class="dashboard">
+
+    <header class="header">
+      <div>
+        <h1>PURSE Schedule Dashboard</h1>
+        <p>Panpacific University Roadshow and Student Enrollment</p>
+      </div>
+
+      <div class="live-pill">
+        <span></span>
+        Live Sheet Updates
+      </div>
+    </header>
+
+    <section class="top-grid">
+      <div class="highlight-card">
+        <p class="eyebrow">Next Nearest Schedule</p>
+        <h2 id="nextTown">Loading...</h2>
+
+        <div class="highlight-details">
+          <div>
+            <span>Date</span>
+            <strong id="nextDate">--</strong>
+          </div>
+          <div>
+            <span>Campus</span>
+            <strong id="nextCampus">--</strong>
+          </div>
+          <div>
+            <span>Status</span>
+            <strong id="nextStatus" class="status-badge">--</strong>
+          </div>
+        </div>
+
+        <p id="nextRemarks" class="remarks">Checking schedules...</p>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <span>Total Towns</span>
+          <strong id="totalCount">0</strong>
+        </div>
+        <div class="stat-card">
+          <span>Scheduled</span>
+          <strong id="scheduledCount">0</strong>
+        </div>
+        <div class="stat-card">
+          <span>For Update</span>
+          <strong id="updateCount">0</strong>
+        </div>
+        <div class="stat-card">
+          <span>Completed</span>
+          <strong id="completedCount">0</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="controls">
+      <input type="text" id="searchInput" placeholder="Search town..." />
+
+      <select id="campusFilter">
+        <option value="All">All Campuses</option>
+        <option value="Urdaneta">Urdaneta</option>
+        <option value="Tayug">Tayug</option>
+      </select>
+
+      <select id="statusFilter">
+        <option value="All">All Status</option>
+        <option value="Scheduled">Scheduled</option>
+        <option value="For Update">For Update</option>
+        <option value="Completed">Completed</option>
+        <option value="Cancelled">Cancelled</option>
+        <option value="Rescheduled">Rescheduled</option>
+      </select>
+    </section>
+
+    <section class="table-card">
+      <div class="table-header">
+        <h3>Town Schedule List</h3>
+        <p id="lastUpdated">Last updated: --</p>
+      </div>
+
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Town</th>
+              <th>Campus</th>
+              <th>Date</th>
+              <th>Status</th>
+              <th>Remarks</th>
+            </tr>
+          </thead>
+          <tbody id="scheduleTable">
+            <tr>
+              <td colspan="5">Loading schedules...</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
