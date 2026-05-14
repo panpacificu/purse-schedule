@@ -7,8 +7,6 @@
 :root {
   --pu-blue: #263f77;
   --pu-green: #406f27;
-  --soft-blue: #eaf2ff;
-  --soft-green: #edf7e8;
   --white-glass: rgba(255, 255, 255, 0.72);
   --border-glass: rgba(255, 255, 255, 0.42);
   --text-dark: #1f2937;
@@ -213,6 +211,13 @@ body {
   letter-spacing: -0.04em;
 }
 
+.visitor-card {
+  grid-column: span 2;
+  background:
+    linear-gradient(135deg, rgba(38,63,119,0.14), rgba(64,111,39,0.14)),
+    rgba(255,255,255,0.66);
+}
+
 .controls {
   display: grid;
   grid-template-columns: 1fr 190px 190px;
@@ -360,6 +365,10 @@ tbody tr:hover {
 
   .stats-grid {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .visitor-card {
+    grid-column: span 2;
   }
 
   .highlight-card {
