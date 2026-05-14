@@ -16,7 +16,7 @@ async function loadSchedules() {
     renderTable(schedules);
 
     document.getElementById("lastUpdated").textContent =
-      "Last updated: " + new Date().toLocaleString();
+      "Last updated: " + new Date().toLocaleString("en-PH");
   } catch (error) {
     tableBody.innerHTML = `
       <tr>
@@ -52,6 +52,7 @@ function renderDashboard(data) {
     document.getElementById("nextDate").textContent = "--";
     document.getElementById("nextCampus").textContent = "--";
     document.getElementById("nextStatus").textContent = "--";
+    document.getElementById("nextStatus").className = "status-badge default-status";
     document.getElementById("nextRemarks").textContent =
       "Schedules are still for update.";
   }
@@ -76,9 +77,13 @@ function renderTable(data) {
   const statusValue = statusFilter.value;
 
   const filteredData = data.filter(item => {
-    const matchesSearch = item.Town.toLowerCase().includes(searchValue);
-    const matchesCampus = campusValue === "All" || item.Campus === campusValue;
-    const matchesStatus = statusValue === "All" || item.Status === statusValue;
+    const town = String(item.Town || "").toLowerCase();
+    const campus = String(item.Campus || "");
+    const status = String(item.Status || "");
+
+    const matchesSearch = town.includes(searchValue);
+    const matchesCampus = campusValue === "All" || campus === campusValue;
+    const matchesStatus = statusValue === "All" || status === statusValue;
 
     return matchesSearch && matchesCampus && matchesStatus;
   });
@@ -94,12 +99,12 @@ function renderTable(data) {
 
   tableBody.innerHTML = filteredData.map(item => `
     <tr>
-      <td><strong>${item.Town}</strong></td>
-      <td>${item.Campus}</td>
+      <td><strong>${item.Town || "-"}</strong></td>
+      <td>${item.Campus || "-"}</td>
       <td>${formatDate(item.Date)}</td>
       <td>
         <span class="status-badge ${getStatusClass(item.Status)}">
-          ${item.Status}
+          ${item.Status || "For Update"}
         </span>
       </td>
       <td>${item.Remarks || "-"}</td>
@@ -137,8 +142,20 @@ function getStatusClass(status) {
   }
 }
 
+function loadVisitorCounter() {
+  fetch("https://api.countapi.xyz/hit/purse-dashboard-panpacificu/visits")
+    .then(res => res.json())
+    .then(res => {
+      document.getElementById("visitorCount").innerText = res.value;
+    })
+    .catch(() => {
+      document.getElementById("visitorCount").innerText = "--";
+    });
+}
+
 searchInput.addEventListener("input", () => renderTable(schedules));
 campusFilter.addEventListener("change", () => renderTable(schedules));
 statusFilter.addEventListener("change", () => renderTable(schedules));
 
 loadSchedules();
+loadVisitorCounter();
