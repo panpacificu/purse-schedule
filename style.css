@@ -212,10 +212,13 @@ body {
 }
 
 .visitor-card {
-  grid-column: span 2;
   background:
-    linear-gradient(135deg, rgba(38,63,119,0.14), rgba(64,111,39,0.14)),
+    linear-gradient(135deg, rgba(38,63,119,0.10), rgba(64,111,39,0.10)),
     rgba(255,255,255,0.66);
+}
+
+.visitor-card strong {
+  font-size: 24px;
 }
 
 .controls {
@@ -365,10 +368,6 @@ tbody tr:hover {
 
   .stats-grid {
     grid-template-columns: repeat(2, 1fr);
-  }
-
-  .visitor-card {
-    grid-column: span 2;
   }
 
   .highlight-card {
